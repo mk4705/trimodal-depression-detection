@@ -78,6 +78,23 @@ DAIC-WOZ (Distress Analysis Interview Corpus Wizard-of-Oz)
 
 ---
 
+## System Architecture
+
+![Workflow](screenshots/Workflow.jpg)
+
+
+## Explainability Analysis
+
+![Emotion distribution](screenshots/emotion_distibution_shap.jpg)
+
+![Male Emotion distribution](screenshots/male_emotion_distibution_shap.jpg)
+
+![Female Emotion distribution](screenshots/female_emotion_distibution_shap.jpg)
+
+![SHAP Male Beeswarm](screenshots/male_beeswarm.jpg)
+
+![SHAP Female Beeswarm](screenshots/female_beeswarm.jpg)
+
 ## Results
 
 | Metric                  | Value  |
