@@ -87,9 +87,9 @@ DAIC-WOZ (Distress Analysis Interview Corpus Wizard-of-Oz)
 
 ![Emotion distribution](screenshots/emotion_distribution_shap.jpg)
 
-![Male Emotion distribution](screenshots/male_emotion_distribution_shap.jpg)
+![Male Emotion distribution](screenshots/male_emotion_distribution.jpg)
 
-![Female Emotion distribution](screenshots/female_emotion_distribution_shap.jpg)
+![Female Emotion distribution](screenshots/female_emotion_distribution.jpg)
 
 ![SHAP Male Beeswarm](screenshots/male_beeswarm.jpg)
 
