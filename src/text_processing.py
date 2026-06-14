@@ -1,38 +1,41 @@
-"""
-Text Emotion Extraction Module
-
-Uses:
-- Groq LLM for transcript cleaning
-- DistilRoBERTa for emotion classification
-
-Output:
-7-dimensional emotion probability vector
-"""
-
+import os
+import pandas as pd
+from groq import Groq
 from transformers import pipeline
 
+client = Groq(
+    api_key=os.getenv("GROQ_API_KEY")
+)
 
-class TextEmotionExtractor:
-    def __init__(self):
-        self.classifier = pipeline(
-            "text-classification",
-            model="j-hartmann/emotion-english-distilroberta-base",
-            return_all_scores=True
-        )
+def refine_text(text):
 
-    def clean_text(self, text):
-        """
-        Placeholder for transcript cleaning.
-        """
-        return text.strip()
+    if not text:
+        return ""
 
-    def extract_emotions(self, text):
-        text = self.clean_text(text)
-        emotions = self.classifier(text)
-        return emotions
+    response = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": text
+            }
+        ],
+        model="llama-3.3-70b-versatile"
+    )
+
+    return response.choices[0].message.content
 
 
-if __name__ == "__main__":
-    extractor = TextEmotionExtractor()
-    sample = "I feel tired and emotionally exhausted."
-    print(extractor.extract_emotions(sample))
+pipe = pipeline(
+    "text-classification",
+    model="j-hartmann/emotion-english-distilroberta-base",
+    top_k=None
+)
+
+def extract_emotions(text):
+
+    preds = pipe(text[:512])
+
+    return {
+        p["label"]: p["score"]
+        for p in preds[0]
+    }
